@@ -1,17 +1,8 @@
-# Your Project Name
+# Store Hub
 
 ## Description
 
 This project is a Django web application that allows users to manage products and orders. It includes user authentication, product creation, and order management features.
-
-## Table of Contents
-
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [License](#license)
 
 ## Features
 
