@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+
+{% block title %}Order List{% endblock %}
+
+{% block content %}
+    <h1>Orders</h1>
+    <ul>
+        {% for order in orders %}
+        <li>
+            <strong>Product:</strong> {{ order.product.name }}<br>
+            <strong>Price:</strong> ${{ order.product.price }}<br>
+            <strong>Quantity:</strong> {{ order.quantity }}<br>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'make_order' %}" class="btn">Place New Order</a>
+{% endblock %}
