@@ -8,33 +8,40 @@ This project is a Django web application that allows users to manage products an
 
 - User authentication (login/logout)
 - Product listing
+- Category listing
 - Add new products (only for authenticated users)
 - Create and manage orders (only for authenticated users)
 
 ## Technologies Used
 
 - **Backend**: Django 5.1
-- **Database**: SQLite
+- **Database**: PostgresSQL
 - **Frontend**: HTML, CSS
 - **Version Control**: Git
+- **Containerization**: Docker
 
 ## Installation
 
 To set up this project locally, follow these steps:
 
-1. **Clone the repository With SSH**:
+### Clone the repository With SSH:
 
    ```bash
    git clone git@github.com:ILIAEVI/storehub.git
    ```
 
-2. **How to Run**
-    ```
+### Configure .env.example
+
+### How to Run
+Firstly, start docker, then run following commands.
+   ```
    pip install -r requirements.txt
-   
+   docker-compose up -d --build
    python manage.py makemigrations
    python manage.py migrate
+   
    python manage.py createsuperuser
+   
    python manage.py runserver
+   
    ```
-
