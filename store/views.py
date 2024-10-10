@@ -32,7 +32,10 @@ def product_list(request):
                 {
                 'id': category.id,
                 'name': category.name,
-                'parent_id': category.parent_id,
+                'parent': {
+                    'id': category.parent.id,
+                    'name': category.parent.name
+                }if category.parent else None
                 }
                 for category in product.categories.all()
             ]
