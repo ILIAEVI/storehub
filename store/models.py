@@ -1,5 +1,6 @@
 import os
 import uuid
+from itertools import product
 
 from django.db import models
 from django.db.models.signals import pre_save, post_delete
@@ -27,6 +28,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    quantity = models.PositiveIntegerField(default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to=generate_image_path, null=True, blank=True)
     categories = models.ManyToManyField(Category, related_name='products')
