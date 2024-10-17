@@ -1,11 +1,15 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from authentication.models import User
 from store.models import Product
 
 
-class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
+class UserCart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f"Order {self.id} - {self.product.name} x {self.quantity}"
+
+@receiver(post_save, sender=User)
+def create_user_cart(sender, instance, created, **kwargs):
+    if created:
+        UserCart.objects.create(user=instance)
