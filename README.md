@@ -44,6 +44,10 @@ Firstly, start docker, then run following commands.
    ```
 
 ### Endpoints:
+- **GET** `' '`: Home Page
+- **GET** `/contact/`
 - **GET** `/store/categories/`: List all categories.
 - **GET** `/store/categories/{category_id}/products/`: List products in a specific category
 - **GET** `/store/product/{product_id}/`: Retrieve details of a specific product.
+- **GET** `/order/checkout/`
+- **GET** `/order/order_list/`
