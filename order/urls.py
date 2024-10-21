@@ -3,6 +3,6 @@ from order import views
 
 
 urlpatterns = [
-    path('make-order/', views.make_order, name='make_order'),
-    path('list/', views.order_list, name='order_list'),
+    path('checkout/', views.place_order, name='checkout'),
+    path('order_list/', views.order_list, name='order_list'),
 ]
