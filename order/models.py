@@ -6,7 +6,7 @@ from store.models import Product
 
 
 class UserCart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_cart')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -14,6 +14,10 @@ class UserCart(models.Model):
     def total_price(self):
         total = sum(item.total_price for item in self.items.all())
         return total
+
+    @property
+    def total_quantity(self):
+        return self.items.count()
 
 
 class CartItem(models.Model):

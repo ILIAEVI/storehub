@@ -16,4 +16,3 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('categories',)
     search_fields = ('name', 'description')
     filter_horizontal = ('categories',)
-    readonly_fields = ('quantity',)

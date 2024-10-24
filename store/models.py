@@ -1,10 +1,11 @@
 import os
 import uuid
 from django.db import models
-from django.db.models.signals import pre_save, post_delete
+from django.db.models.signals import pre_save, post_delete, post_save
 from django.dispatch import receiver
-
 from authentication.models import User
+from versatileimagefield.fields import VersatileImageField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 def generate_image_path(instance, filename):
@@ -30,15 +31,23 @@ class Product(models.Model):
     description = models.TextField()
     quantity = models.PositiveIntegerField(default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to=generate_image_path, null=True, blank=True)
-    categories = models.ManyToManyField(Category, related_name='products')
+    image = VersatileImageField(upload_to=generate_image_path, null=True, blank=True)
     weight = models.PositiveIntegerField(default=0)
     country_of_origin = models.CharField(max_length=100)
     quality = models.CharField(max_length=100)
     healthy = models.CharField(max_length=100)
+    categories = models.ManyToManyField(Category, related_name='products')
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+                                              validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     def __str__(self):
         return self.name
+
+    @property
+    def discounted_price(self):
+        discount_amount = (self.price * self.discount_percentage) / 100
+        new_price = self.price - discount_amount
+        return f"{new_price:.2f}"
 
 
 class FeedBack(models.Model):
@@ -47,8 +56,6 @@ class FeedBack(models.Model):
     rating = models.PositiveIntegerField(default=0)
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-
 
 
 @receiver(pre_save, sender=Product)
