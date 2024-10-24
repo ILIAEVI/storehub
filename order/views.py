@@ -1,6 +1,3 @@
-from itertools import product
-from urllib.parse import uses_query
-
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
