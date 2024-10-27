@@ -79,6 +79,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <form method="get" action="
+
                                             {% if category %}{% url 'category_list' category_id=category.id %}{% else %}{% url 'category_list' %}{% endif %}">
                                         <div class="mb-3">
                                             <h4 class="mb-2">Price</h4>
@@ -91,8 +92,10 @@
                                         </div>
                                         <div class="mb-3">
                                             <h4>Additional</h4>
-                                           <div class="mb-2">
-                                                <input type="radio" class="me-2" id="discount_filter" name="discount_filter" value="discounted" {% if request.GET.discount_filter == 'discounted' %}checked{% endif %}>
+                                            <div class="mb-2">
+                                                <input type="radio" class="me-2" id="discount_filter"
+                                                       name="discount_filter" value="discounted"
+                                                       {% if request.GET.discount_filter == 'discounted' %}checked{% endif %}>
                                                 <label for="discountFilter">Discount</label>
                                             </div>
                                         </div>

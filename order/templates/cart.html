@@ -88,6 +88,28 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-12">
+                <div class="pagination d-flex justify-content-center mt-5">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1" class="rounded">&laquo;&laquo;</a>
+                        <a href="?page={{ page_obj.previous_page_number }}"
+                           class="rounded">&laquo;</a>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a href="?page={{ num }}" class="active rounded">{{ num }}</a>
+                        {% else %}
+                            <a href="?page={{ num }}" class="rounded">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="rounded">&raquo;</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="rounded">&raquo;&raquo;</a>
+                    {% endif %}
+                </div>
+            </div>
             <div class="mt-5">
                 <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
                 <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
