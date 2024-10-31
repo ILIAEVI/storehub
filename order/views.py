@@ -1,14 +1,18 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, View
 from order.models import CartItem, UserCart
 from store.models import Product
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class PlaceOrderView(TemplateView):
     template_name = 'checkout.html'
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class OrderListView(ListView):
     model = CartItem
     template_name = 'cart.html'
@@ -27,6 +31,7 @@ class OrderListView(ListView):
         return context
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class AddCartItemView(View):
     def post(self, request):
         product_id = request.POST['product_id']
@@ -52,6 +57,7 @@ class AddCartItemView(View):
         return redirect('order_list')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateCartItemView(View):
     def post(self, request, product_id, *args, **kwargs):
         cart_item = get_object_or_404(CartItem, cart__user=request.user, product_id=product_id)
@@ -73,6 +79,7 @@ class UpdateCartItemView(View):
         return redirect('order_list')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DeleteCartItemView(View):
     def post(self, request, product_id, *args, **kwargs):
         cart_item = get_object_or_404(CartItem, cart__user=request.user, product_id=product_id)

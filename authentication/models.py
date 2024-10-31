@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import validate_email
 
 
 class UserManager(BaseUserManager):
@@ -34,9 +33,11 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+
 class User(AbstractUser):
     username = None
     email = models.EmailField("Email Address", unique=True, blank=False)
+    last_active_datetime = models.DateTimeField(blank=True, null=True)
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'email'
 

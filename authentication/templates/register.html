@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             height: 100vh;
         }
 
-        .login-container {
+        .register-container {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
@@ -32,7 +32,7 @@
             flex-direction: column;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], input[type="email"] {
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -54,7 +54,7 @@
             background-color: #45a049;
         }
 
-        .register-button, .homepage-button {
+        .login-button, .homepage-button {
             width: 100%;
             margin-top: 10px;
             padding: 10px;
@@ -65,11 +65,11 @@
             color: white;
         }
 
-        .register-button {
+        .login-button {
             background-color: #007bff;
         }
 
-        .register-button:hover {
+        .login-button:hover {
             background-color: #0069d9;
         }
 
@@ -88,8 +88,8 @@
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h1>Login</h1>
+<div class="register-container">
+    <h1>Register</h1>
     {% if form.errors %}
         <div class="error-message">
             {% for field in form %}
@@ -101,14 +101,16 @@
     {% endif %}
     <form method="post">
         {% csrf_token %}
-        {{ form.username.label }}<br>
-        {{ form.username }}<br>
-        {{ form.password.label }}<br>
-        {{ form.password }}<br>
-        <button type="submit">Login</button>
+        {{ form.email.label }}<br>
+        {{ form.email }}<br>
+        {{ form.password1.label }}<br>
+        {{ form.password1 }}<br>
+        {{ form.password2.label }}<br>
+        {{ form.password2 }}<br>
+        <button type="submit">Register</button>
     </form>
-    <a href="{% url 'register' %}">
-        <button class="register-button">If you don't have an account, Register!</button>
+    <a href="{% url 'login' %}">
+        <button class="login-button">If you already have an account, Login!</button>
     </a>
     <a href="{% url 'home' %}">
         <button class="homepage-button">Go to Homepage</button>

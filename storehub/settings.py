@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'authentication.user_activity_middleware.AutoLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'storehub.urls'
