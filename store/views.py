@@ -1,19 +1,26 @@
-from django.shortcuts import get_object_or_404
-from store.forms import ProductFilterForm
+from django.conf import settings
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
+from store.forms import ProductFilterForm, ContactForm
 from store.models import Product, Category
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, FormView
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
 class HomeView(TemplateView):
     template_name = 'home.html'
 
 
+@method_decorator(cache_page(60 * 5, key_prefix='category_list_view_cache'), name='dispatch')
 class CategoryListView(ListView):
     model = Product
     template_name = 'category_list.html'
     form_class = ProductFilterForm
     paginate_by = 5
     context_object_name = 'object_list'
+    vary_on_headers = ['Accept-Language', 'User-Agent']
 
     def get_queryset(self):
         category_id = self.kwargs.get('category_id')
@@ -83,8 +90,31 @@ class ProductDetailView(DetailView):
         return context
 
 
-class ContactView(TemplateView):
+class ContactView(FormView):
     template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contact')
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        message = form.cleaned_data['message']
+
+        send_mail(
+            f'Message from {name}',
+            message,
+            email,
+            [settings.EMAIL_HOST_USER],
+        )
+        return super().form_valid(form)
+
+
+def custom_404_view(request, exception=None):
+    return render(request, '404.html', status=404)
+
+
+def custom_500_view(request):
+    return render(request, '500.html', status=500)
 
 
 def get_all_categories(category):
