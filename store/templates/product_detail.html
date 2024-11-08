@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
 
 <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Product Detail</h1>
+            <h1 class="text-center text-white display-6">{% trans "Product Detail" %}</h1>
             <ol class="breadcrumb justify-content-center mb-0">
             </ol>
         </div>
@@ -41,7 +41,7 @@
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="mb-4">{{ product.description}}</p>
+                                <p class="mb-4">{{ product.description }}</p>
                                 <form action="{% url 'add_cart_item' %}" method="POST" class="d-inline">
                                     {% csrf_token %}
                                     <input type="hidden" name="product_id" value="{{ product.id }}">
@@ -54,7 +54,7 @@
                                     <div class="nav nav-tabs mb-3">
                                         <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
                                             id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
-                                            aria-controls="nav-about" aria-selected="true">Description</button>
+                                            aria-controls="nav-about" aria-selected="true">{% trans "Description" %}</button>
                                         <button class="nav-link border-white border-bottom-0" type="button" role="tab"
                                             id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
                                             aria-controls="nav-mission" aria-selected="false">Reviews</button>

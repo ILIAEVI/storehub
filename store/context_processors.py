@@ -1,4 +1,5 @@
 from order.models import UserCart
+from django.utils.translation import get_language
 
 
 def cart_items_total_quantity(request):

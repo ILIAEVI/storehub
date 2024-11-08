@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from authentication.models import User
 from versatileimagefield.fields import VersatileImageField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.translation import gettext_lazy as _
 
 
 def generate_image_path(instance, filename):
@@ -27,13 +28,13 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    quantity = models.PositiveIntegerField(default=0)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    description = models.TextField(verbose_name=_('Description'))
+    quantity = models.PositiveIntegerField(default=0, verbose_name=_('Quantity'))
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_('Price'))
     image = VersatileImageField(upload_to=generate_image_path, null=True, blank=True)
     weight = models.PositiveIntegerField(default=0)
-    country_of_origin = models.CharField(max_length=100)
+    country_of_origin = models.CharField(max_length=100, verbose_name=_('Country_of_origin'))
     quality = models.CharField(max_length=100)
     healthy = models.CharField(max_length=100)
     categories = models.ManyToManyField(Category, related_name='products')

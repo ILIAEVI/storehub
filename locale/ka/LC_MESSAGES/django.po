@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-08 17:15+0000\n"
+"PO-Revision-Date: 2024-11-08 17:19+0000\n"
+"Last-Translator:   <giorgi@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: store/models.py:31
+msgid "Name"
+msgstr "სახელი"
+
+#: store/models.py:32 store/templates/product_detail.html:57
+msgid "Description"
+msgstr "აღწერა"
+
+#: store/models.py:33
+msgid "Quantity"
+msgstr "რაოდენობა"
+
+#: store/models.py:34
+msgid "Price"
+msgstr "ფასი"
+
+#: store/models.py:37
+msgid "Country_of_origin"
+msgstr "ქვეყანა"
+
+#: store/templates/base.html:151
+msgid "Fruitables"
+msgstr "ხილეულობა"
+
+#: store/templates/base.html:152
+msgid "Fresh products"
+msgstr "ახალი პროდუქტები"
+
+#: store/templates/category_list.html:16
+msgid "Shop"
+msgstr "მაღაზია"
+
+#: store/templates/category_list.html:29
+#| msgid "Fresh products"
+msgid "Fresh fruits shop"
+msgstr "ახალი პროდუქტები"
+
+#: store/templates/category_list.html:51
+msgid "Nothing"
+msgstr "არაფერი"
+
+#: store/templates/category_list.html:52
+msgid "Popularity"
+msgstr "პოპულარობა"
+
+#: store/templates/contact.html:14 store/templates/contact.html:18
+msgid "Contact"
+msgstr "კონტაქტი"
+
+#: store/templates/home.html:16
+#, python-format
+msgid "100%% Organic Foods"
+msgstr "100%% ორგანული საკვები"
+
+#: store/templates/home.html:17
+msgid "Organic Veggies & Fruits Foods"
+msgstr "ორგანული ბოსტნეული, ხილი და საკვები"
+
+#: store/templates/product_detail.html:14
+msgid "Product Detail"
+msgstr "პროდუქტის დეტალები"
+
+#~ msgid "Home"
+#~ msgstr "მთავარი"
